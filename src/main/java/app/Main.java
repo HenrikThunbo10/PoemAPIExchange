@@ -8,7 +8,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory("poemapi");
+        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory("poems");
 
         var app = Javalin.create((config) ->
         {
