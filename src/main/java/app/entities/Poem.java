@@ -4,8 +4,6 @@ import app.enums.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.logging.Level;
-
 @Entity
 @Getter
 @Setter

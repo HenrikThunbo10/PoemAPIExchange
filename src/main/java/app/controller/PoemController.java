@@ -73,15 +73,19 @@ public class PoemController
     public void deletePoem(Context ctx)
     {
         Long id = Long.parseLong(ctx.pathParam("id"));
-        poemDAO.deletePoem(id);
-        if (poemDAO.getPoemById(id) == null)
+        // Check if the poem exists before attempting to delete it
+        Poem poem = poemDAO.getPoemById(id);
+        if (poem == null)
         {
-            ctx.status(200);
-            ctx.result("Poem deleted");
+            // If the poem does not exist, send a 404 status with a "not found" message
+            ctx.status(404);
+            ctx.result("Poem with ID " + id + " not found");
         } else
         {
-            ctx.status(404);
-            ctx.result("Poem not found");
+            // If the poem exists, delete it and send a success message
+            poemDAO.deletePoem(id);
+            ctx.status(200);
+            ctx.result("Poem with ID " + id + " has been deleted");
         }
     }
 }

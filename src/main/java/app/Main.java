@@ -1,12 +1,10 @@
 package app;
 
 import app.DAOs.PoemDAO;
+import app.config.HibernateConfig;
 import app.controller.PoemController;
-import app.entities.Poem;
-import app.enums.Type;
 import io.javalin.Javalin;
 import jakarta.persistence.EntityManagerFactory;
-import app.config.HibernateConfig;
 
 public class Main
 {
@@ -27,8 +25,6 @@ public class Main
         app.get("/poem/{id}", poemController::getPoemById);
         app.put("/poem/{id}", poemController::updatePoem);
         app.delete("/poem/{id}", poemController::deletePoem);
-
-
         app.start(7007);
     }
 }

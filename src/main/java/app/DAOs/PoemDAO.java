@@ -58,7 +58,8 @@ public class PoemDAO
         {
             em.getTransaction().begin();
             Poem poemToBeUpdated = getPoemById(id);
-            if (poemToBeUpdated != null) {
+            if (poemToBeUpdated != null)
+            {
                 poemToBeUpdated.setTitle(updatedPoem.getTitle());
                 poemToBeUpdated.setPoem(updatedPoem.getPoem());
                 poemToBeUpdated.setAuthor(updatedPoem.getAuthor());
@@ -77,16 +78,19 @@ public class PoemDAO
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
-            Poem poem = getPoemById(id);
-            if (poem != null) {
+            Poem poem = em.find(Poem.class, id);
+            if (poem != null)
+            {
                 em.remove(poem);
-                em.getTransaction().commit();
+                em.getTransaction().commit(); // Complete the transaction only when deletion is successful
+            } else
+            {
+                em.getTransaction().rollback(); // Rollback only if necessary
             }
-            em.getTransaction().rollback();
+        } catch (Exception e)
+        {
+            // Add logging here if necessary
+            throw e;
         }
-
     }
-
-
-
 }
