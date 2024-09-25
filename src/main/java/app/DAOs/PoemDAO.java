@@ -40,11 +40,12 @@ public class PoemDAO
 
     }
 
-    public void createPoem(Poem poem)
+    public void createPoem(PoemDTO poemDTO)
     {
         try (EntityManager em = emf.createEntityManager())
         {
             em.getTransaction().begin();
+            Poem poem = new Poem(poemDTO.getTitle(), poemDTO.getPoem(), poemDTO.getAuthor(), poemDTO.getType());
             em.persist(poem);
             em.getTransaction().commit();
         }

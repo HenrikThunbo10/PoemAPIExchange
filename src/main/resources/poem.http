@@ -1,7 +1,4 @@
-###
-GET http://localhost:7007/api/poem
-
-###
+### Create a new poem
 POST http://localhost:7007/api/poem
 Content-Type: application/json
 
@@ -12,20 +9,22 @@ Content-Type: application/json
   "type": "SONNET"
 }
 
-###
+### Get all poems
+GET http://localhost:7007/api/poem
+
+### Get a specific poem by ID
 GET http://localhost:7007/api/poem/1
 
-
-###
-PUT http://localhost:7007/api/poem/1
+### Update a poem by ID
+PUT http://localhost:7007/api/poem/2
 Content-Type: application/json
 
 {
   "title": "If You Forget Me updated",
-  "poem": "I want you to know one thing...updated",
+  "poem": "I want you to know one thing... updated",
   "author": "Pablo Neruda updated",
-  "type": "SONNET updated"
+  "type": "SONNET"
 }
 
-###
-DELETE http://localhost:7007/api/poem/1
+### Delete a poem by ID
+DELETE http://localhost:7007/api/poem/4
