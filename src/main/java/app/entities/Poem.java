@@ -1,5 +1,6 @@
 package app.entities;
 
+import app.enums.Type;
 import jakarta.persistence.Access;
 import lombok.AccessLevel;
 import lombok.Data;
