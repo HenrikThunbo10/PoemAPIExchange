@@ -2,6 +2,8 @@ package app;
 
 import app.DAOs.PoemDAO;
 import app.controller.PoemController;
+import app.entities.Poem;
+import app.enums.Type;
 import io.javalin.Javalin;
 import jakarta.persistence.EntityManagerFactory;
 import app.config.HibernateConfig;
@@ -14,16 +16,24 @@ public class Main
 
         var app = Javalin.create((config) ->
         {
-//            config.router.contextPath = "/api/poem";
             config.router.contextPath = "/api";
             config.bundledPlugins.enableRouteOverview("/routes");
         });
 
         PoemDAO poemDAO = new PoemDAO(emf);
+        Poem poem = new Poem("sf", "sdf", "sdf", Type.SONNET);
+        poemDAO.createPoem(poem);
+
         PoemController poemController = new PoemController(poemDAO);
 
-        app.get("/poems", poemController::getAllPoems);
-        app.get("/poems", poemController::createPoem);
+        app.get("/poem", poemController::getAllPoems);
+        app.get("/poem/{id}", poemController::getPoemById);
+        app.put("/poem/{id}", poemController::updatePoem);
+
+        app.delete("/poem/{id}", poemController::deletePoem);
+
+
+
 
         app.start(7007);
     }

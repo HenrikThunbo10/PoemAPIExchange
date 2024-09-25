@@ -1,0 +1,31 @@
+###
+GET http://localhost:7007/api/poem
+
+###
+POST http://localhost:7007/api/poem
+Content-Type: application/json
+
+{
+  "title": "If You Forget Me",
+  "poem": "I want you to know one thing...",
+  "author": "Pablo Neruda",
+  "type": "SONNET"
+}
+
+###
+GET http://localhost:7007/api/poem/1
+
+
+###
+PUT http://localhost:7007/api/poem/1
+Content-Type: application/json
+
+{
+  "title": "If You Forget Me updated",
+  "poem": "I want you to know one thing...updated",
+  "author": "Pablo Neruda updated",
+  "type": "SONNET updated"
+}
+
+###
+DELETE http://localhost:7007/api/poem/1

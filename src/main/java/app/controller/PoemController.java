@@ -48,7 +48,7 @@ public class PoemController
     }
 
     public void updatePoem(Context ctx) {
-        int id = Integer.parseInt(ctx.pathParam("id"));
+        Long id = Long.parseLong(ctx.pathParam("id"));
         PoemDTO poemDTO = ctx.bodyAsClass(PoemDTO.class);
         Poem updatedPoem = poemDAO.updatePoem(id, poemDTO.getPoem());
         if (updatedPoem != null) {
@@ -62,7 +62,8 @@ public class PoemController
 
     public void deletePoem(Context ctx) {
         Long id = Long.parseLong(ctx.pathParam("id"));
-        if (poemDAO.deletePoem(id)) {
+        poemDAO.deletePoem(id);
+        if( poemDAO.getPoemById(id) == null) {
             ctx.status(200);
             ctx.result("Poem deleted");
         } else {
